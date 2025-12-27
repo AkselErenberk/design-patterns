@@ -1,0 +1,16 @@
+@startuml
+abstract class Creator {
+    factoryMethod()
+}
+
+class ConcreteCreator1 extends Creator
+class ConcreteCreator2 extends Creator
+
+interface Product
+class ConcreteProduct1 implements Product
+class ConcreteProduct2 implements Product
+
+Creator --> Product
+ConcreteCreator1 --> ConcreteProduct1
+ConcreteCreator2 --> ConcreteProduct2
+@enduml

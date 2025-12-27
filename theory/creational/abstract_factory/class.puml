@@ -1,0 +1,24 @@
+@startuml
+interface AbstractFactory {
+    createProductA()
+    createProductB()
+}
+
+class ConcreteFactory1 implements AbstractFactory
+class ConcreteFactory2 implements AbstractFactory
+
+interface ProductA
+interface ProductB
+
+class ProductA1 implements ProductA
+class ProductA2 implements ProductA
+class ProductB1 implements ProductB
+class ProductB2 implements ProductB
+
+AbstractFactory <|.. ConcreteFactory1
+AbstractFactory <|.. ConcreteFactory2
+ConcreteFactory1 --> ProductA1
+ConcreteFactory1 --> ProductB1
+ConcreteFactory2 --> ProductA2
+ConcreteFactory2 --> ProductB2
+@enduml
