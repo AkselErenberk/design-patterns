@@ -1,0 +1,20 @@
+@startuml
+title Strategy
+
+class Context {
+  -strategy : Strategy
+  +setStrategy(s: Strategy)
+  +execute()
+}
+
+interface Strategy {
+  +doAlgorithm()
+}
+
+class ConcreteStrategyA
+class ConcreteStrategyB
+
+Strategy <|.. ConcreteStrategyA
+Strategy <|.. ConcreteStrategyB
+Context o-- Strategy
+@enduml

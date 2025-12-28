@@ -1,0 +1,19 @@
+@startuml
+title Composite
+
+interface Component {
+  +operation()
+}
+
+class Leaf
+class Composite {
+  +operation()
+  +add(c: Component)
+  +remove(c: Component)
+  -children : List<Component>
+}
+
+Component <|.. Leaf
+Component <|.. Composite
+Composite *-- Component : children
+@enduml

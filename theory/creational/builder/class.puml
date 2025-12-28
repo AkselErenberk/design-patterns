@@ -1,17 +1,37 @@
 @startuml
-class Director {
-    construct()
+title Abstract Factory
+
+interface AbstractProductA
+interface AbstractProductB
+
+interface AbstractFactory {
+  +createA() : AbstractProductA
+  +createB() : AbstractProductB
 }
 
-interface Builder {
-    buildPartA()
-    buildPartB()
-    getResult()
-}
+class ConcreteFactory1
+class ConcreteFactory2
 
-class ConcreteBuilder implements Builder
-class Product
+class ConcreteProductA1
+class ConcreteProductB1
+class ConcreteProductA2
+class ConcreteProductB2
 
-Director --> Builder
-ConcreteBuilder --> Product
+AbstractFactory <|.. ConcreteFactory1
+AbstractFactory <|.. ConcreteFactory2
+
+AbstractProductA <|.. ConcreteProductA1
+AbstractProductA <|.. ConcreteProductA2
+AbstractProductB <|.. ConcreteProductB1
+AbstractProductB <|.. ConcreteProductB2
+
+ConcreteFactory1 ..> ConcreteProductA1 : creates
+ConcreteFactory1 ..> ConcreteProductB1 : creates
+ConcreteFactory2 ..> ConcreteProductA2 : creates
+ConcreteFactory2 ..> ConcreteProductB2 : creates
+
+class Client
+Client ..> AbstractFactory : uses
+Client ..> AbstractProductA
+Client ..> AbstractProductB
 @enduml

@@ -1,0 +1,22 @@
+@startuml
+title Command
+
+interface Command {
+  +execute()
+}
+
+class ConcreteCommand
+class Receiver {
+  +action()
+}
+
+class Invoker {
+  -cmd : Command
+  +setCommand(c: Command)
+  +invoke()
+}
+
+Command <|.. ConcreteCommand
+ConcreteCommand o-- Receiver
+Invoker o-- Command
+@enduml

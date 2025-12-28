@@ -1,24 +1,37 @@
 @startuml
+title Abstract Factory
+
+interface AbstractProductA
+interface AbstractProductB
+
 interface AbstractFactory {
-    createProductA()
-    createProductB()
+  +createA() : AbstractProductA
+  +createB() : AbstractProductB
 }
 
-class ConcreteFactory1 implements AbstractFactory
-class ConcreteFactory2 implements AbstractFactory
+class ConcreteFactory1
+class ConcreteFactory2
 
-interface ProductA
-interface ProductB
-
-class ProductA1 implements ProductA
-class ProductA2 implements ProductA
-class ProductB1 implements ProductB
-class ProductB2 implements ProductB
+class ConcreteProductA1
+class ConcreteProductB1
+class ConcreteProductA2
+class ConcreteProductB2
 
 AbstractFactory <|.. ConcreteFactory1
 AbstractFactory <|.. ConcreteFactory2
-ConcreteFactory1 --> ProductA1
-ConcreteFactory1 --> ProductB1
-ConcreteFactory2 --> ProductA2
-ConcreteFactory2 --> ProductB2
+
+AbstractProductA <|.. ConcreteProductA1
+AbstractProductA <|.. ConcreteProductA2
+AbstractProductB <|.. ConcreteProductB1
+AbstractProductB <|.. ConcreteProductB2
+
+ConcreteFactory1 ..> ConcreteProductA1 : creates
+ConcreteFactory1 ..> ConcreteProductB1 : creates
+ConcreteFactory2 ..> ConcreteProductA2 : creates
+ConcreteFactory2 ..> ConcreteProductB2 : creates
+
+class Client
+Client ..> AbstractFactory : uses
+Client ..> AbstractProductA
+Client ..> AbstractProductB
 @enduml

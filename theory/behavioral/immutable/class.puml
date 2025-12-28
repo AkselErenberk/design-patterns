@@ -1,0 +1,17 @@
+@startuml
+title Immutable Object
+
+class Money <<immutable>> {
+  -amount : int
+  -currency : String
+  +Money(amount:int, currency:String)
+  +withAmount(amount:int) : Money
+  +withCurrency(currency:String) : Money
+}
+
+note right of Money
+No setters; state set only at construction.
+Mutations return NEW instances.
+Safe for sharing across threads.
+end note
+@enduml

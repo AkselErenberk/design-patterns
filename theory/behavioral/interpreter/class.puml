@@ -1,0 +1,21 @@
+@startuml
+title Interpreter
+
+class Context {
+  +lookup(symbol:String)
+}
+
+interface AbstractExpression {
+  +interpret(ctx: Context)
+}
+
+class TerminalExpression
+class NonterminalExpression {
+  -expressions : List<AbstractExpression>
+  +interpret(ctx: Context)
+}
+
+AbstractExpression <|.. TerminalExpression
+AbstractExpression <|.. NonterminalExpression
+NonterminalExpression *-- AbstractExpression
+@enduml

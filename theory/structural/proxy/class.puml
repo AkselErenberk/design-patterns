@@ -1,0 +1,25 @@
+@startuml
+title Player-Role
+
+class Player {
+  -roles : Map<String, Role>
+  +attach(role: Role)
+  +detach(roleName: String)
+  +perform(action: String)
+}
+
+interface Role {
+  +supports(action: String) : boolean
+  +execute(player: Player, action: String)
+}
+
+class AdminRole
+class GuestRole
+class EditorRole
+
+Role <|.. AdminRole
+Role <|.. GuestRole
+Role <|.. EditorRole
+
+Player o-- Role : dynamic composition
+@enduml

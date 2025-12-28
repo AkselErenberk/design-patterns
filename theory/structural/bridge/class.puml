@@ -1,0 +1,21 @@
+@startuml
+title Bridge
+
+interface Implementor {
+  +operationImpl()
+}
+
+class ConcreteImplementorA
+class ConcreteImplementorB
+Implementor <|.. ConcreteImplementorA
+Implementor <|.. ConcreteImplementorB
+
+abstract class Abstraction {
+  -impl : Implementor
+  +operation()
+}
+class RefinedAbstraction
+
+Abstraction <|-- RefinedAbstraction
+Abstraction o-- Implementor
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+title Memento
+
+class Originator {
+  -state
+  +save() : Memento
+  +restore(m: Memento)
+}
+
+class Memento <<opaque>> {
+  -internalState
+}
+
+class Caretaker {
+  -history : List<Memento>
+  +push(m: Memento)
+  +pop() : Memento
+}
+
+Caretaker o-- Memento
+Originator ..> Memento : create/restore
+@enduml

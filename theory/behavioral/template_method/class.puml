@@ -1,0 +1,15 @@
+@startuml
+title Template Method
+
+abstract class AbstractClass {
+  +templateMethod()
+  #primitiveOp1()
+  #primitiveOp2()
+}
+
+class ConcreteClassA
+class ConcreteClassB
+
+AbstractClass <|-- ConcreteClassA
+AbstractClass <|-- ConcreteClassB
+@enduml

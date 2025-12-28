@@ -1,0 +1,30 @@
+@startuml
+title Interceptor
+
+class InvocationContext {
+  +proceed()
+  +getData()
+}
+
+interface Interceptor {
+  +intercept(ctx: InvocationContext)
+}
+
+class LoggingInterceptor
+class AuthInterceptor
+
+class InterceptorChain {
+  -interceptors : List<Interceptor>
+  +add(i: Interceptor)
+  +invoke(ctx: InvocationContext)
+}
+
+class Target {
+  +handle(ctx: InvocationContext)
+}
+
+Interceptor <|.. LoggingInterceptor
+Interceptor <|.. AuthInterceptor
+InterceptorChain o-- Interceptor
+InterceptorChain ..> Target : delegates via ctx.proceed()
+@enduml

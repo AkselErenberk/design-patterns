@@ -1,0 +1,27 @@
+@startuml
+title Visitor
+
+interface Visitor {
+  +visitElementA(e: ConcreteElementA)
+  +visitElementB(e: ConcreteElementB)
+}
+
+class ConcreteVisitor1
+class ConcreteVisitor2
+
+Visitor <|.. ConcreteVisitor1
+Visitor <|.. ConcreteVisitor2
+
+interface Element {
+  +accept(v: Visitor)
+}
+
+class ConcreteElementA
+class ConcreteElementB
+
+Element <|.. ConcreteElementA
+Element <|.. ConcreteElementB
+
+ConcreteElementA ..> Visitor : accept/visit
+ConcreteElementB ..> Visitor : accept/visit
+@enduml

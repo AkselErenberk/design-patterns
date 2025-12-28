@@ -1,0 +1,27 @@
+@startuml
+title Configuration (Assembly Pattern)
+
+interface Component {
+  +operation()
+}
+
+class Leaf
+class Composite {
+  +add(c: Component)
+  +operation()
+}
+
+class Configuration <<data>> {
+  +definitions
+}
+
+class Configurator {
+  +build(config: Configuration) : Component
+}
+
+Component <|.. Leaf
+Component <|.. Composite
+Composite *-- Component : children
+Configurator ..> Configuration : reads
+Configurator ..> Composite : assembles
+@enduml

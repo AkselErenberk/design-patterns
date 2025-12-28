@@ -1,0 +1,17 @@
+@startuml
+title Flyweight
+
+interface Flyweight {
+  +operation(extrinsicState)
+}
+
+class ConcreteFlyweight
+Flyweight <|.. ConcreteFlyweight
+
+class FlyweightFactory {
+  -pool : Map<Key, Flyweight>
+  +get(key) : Flyweight
+}
+
+FlyweightFactory o-- Flyweight : shares
+@enduml

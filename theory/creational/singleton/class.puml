@@ -1,8 +1,15 @@
 @startuml
+title Singleton
+
 class Singleton {
-    - instance : Singleton
-    + getInstance() : Singleton
+  -instance : Singleton
+  -Singleton()
+  +getInstance() : Singleton
 }
 
-Singleton --> Singleton : returns same instance
+note right of Singleton
+Private constructor
+Static global accessor
+Thread-safety considerations
+end note
 @enduml

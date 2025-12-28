@@ -1,0 +1,25 @@
+@startuml
+title Mediator
+
+interface Mediator {
+  +notify(sender: Colleague, event:String)
+}
+
+class ConcreteMediator
+
+abstract class Colleague {
+  -mediator : Mediator
+  +send(event:String)
+  +receive(event:String)
+}
+
+class ColleagueA
+class ColleagueB
+
+Mediator <|.. ConcreteMediator
+Colleague <|-- ColleagueA
+Colleague <|-- ColleagueB
+Colleague o-- Mediator
+ConcreteMediator ..> ColleagueA
+ConcreteMediator ..> ColleagueB
+@enduml

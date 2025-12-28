@@ -1,11 +1,16 @@
 @startuml
+title Prototype
+
 interface Prototype {
-    clone()
+  +clone() : Prototype
 }
 
-class ConcretePrototype1 implements Prototype
-class ConcretePrototype2 implements Prototype
+class ConcretePrototypeA
+class ConcretePrototypeB
 
-Prototype <|.. ConcretePrototype1
-Prototype <|.. ConcretePrototype2
+Prototype <|.. ConcretePrototypeA
+Prototype <|.. ConcretePrototypeB
+
+class Client
+Client ..> Prototype : clones
 @enduml

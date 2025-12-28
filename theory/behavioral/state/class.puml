@@ -1,0 +1,20 @@
+@startuml
+title State
+
+class Context {
+  -state : State
+  +setState(s: State)
+  +request()
+}
+
+interface State {
+  +handle(context: Context)
+}
+
+class ConcreteStateA
+class ConcreteStateB
+
+State <|.. ConcreteStateA
+State <|.. ConcreteStateB
+Context o-- State
+@enduml

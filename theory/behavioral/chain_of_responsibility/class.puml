@@ -1,0 +1,20 @@
+@startuml
+title Chain of Responsibility
+
+abstract class Handler {
+  -next : Handler
+  +setNext(h: Handler) : Handler
+  +handle(req: Request)
+}
+
+class ConcreteHandlerA
+class ConcreteHandlerB
+
+class Request
+
+Handler <|-- ConcreteHandlerA
+Handler <|-- ConcreteHandlerB
+Handler o-- Handler : next
+ConcreteHandlerA ..> Request
+ConcreteHandlerB ..> Request
+@enduml
