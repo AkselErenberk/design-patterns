@@ -1,25 +1,28 @@
 @startuml
-title Player-Role
+title Proxy
 
-class Player {
-  -roles : Map<String, Role>
-  +attach(role: Role)
-  +detach(roleName: String)
-  +perform(action: String)
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Provide a surrogate/placeholder to control access (lazy loading, remote, protection).
+
+**Use when**: Control access, defer expensive operations, add caching/auth.
+
+**Key participants**: Subject, RealSubject, Proxy.
+endlegend
+
+interface Subject {
+  +request()
 }
 
-interface Role {
-  +supports(action: String) : boolean
-  +execute(player: Player, action: String)
+class RealSubject
+class Proxy {
+  -real : RealSubject
+  +request()
 }
 
-class AdminRole
-class GuestRole
-class EditorRole
-
-Role <|.. AdminRole
-Role <|.. GuestRole
-Role <|.. EditorRole
-
-Player o-- Role : dynamic composition
+Subject <|.. RealSubject
+Subject <|.. Proxy
+Proxy o-- RealSubject
 @enduml

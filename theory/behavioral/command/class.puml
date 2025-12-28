@@ -1,6 +1,17 @@
 @startuml
 title Command
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Encapsulate a request as an object; support queuing, logging, undo.
+
+**Use when**: Decouple invoker from receiver; macro/undo operations.
+
+**Key participants**: Command, ConcreteCommand, Receiver, Invoker.
+endlegend
+
 interface Command {
   +execute()
 }

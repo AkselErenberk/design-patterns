@@ -1,6 +1,18 @@
 @startuml
 title Abstract Factory
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Create families of related/dependent objects without specifying concrete classes.
+
+**Use when**: You need to ensure products are created from the same family and can vary together (e.g., GUI themes, database drivers).
+
+**Key participants**: AbstractFactory, ConcreteFactory, AbstractProductA/B, ConcreteProductA/B, Client.
+endlegend
+
+
 interface AbstractProductA
 interface AbstractProductB
 

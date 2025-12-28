@@ -1,6 +1,17 @@
 @startuml
 title Memento
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Capture and externalize an object’s internal state without breaking encapsulation; restore later.
+
+**Use when**: Undo/rollback; checkpoints.
+
+**Key participants**: Originator, Memento, Caretaker.
+endlegend
+
 class Originator {
   -state
   +save() : Memento

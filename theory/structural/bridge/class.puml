@@ -1,6 +1,17 @@
 @startuml
 title Bridge
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Decouple an abstraction from its implementation so both can vary independently.
+
+**Use when**: Need to avoid a combinatorial explosion of subclasses (e.g., shapes vs. rendering APIs).
+
+**Key participants**: Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor.
+endlegend
+
 interface Implementor {
   +operationImpl()
 }

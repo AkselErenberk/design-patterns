@@ -1,6 +1,17 @@
 @startuml
 title Iterator
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Provide sequential access to elements without exposing representation.
+
+**Use when**: Collections wish to offer uniform traversal.
+
+**Key participants**: Iterator, ConcreteIterator, Aggregate, ConcreteAggregate.
+endlegend
+
 interface Iterator {
   +hasNext() : boolean
   +next() : Element

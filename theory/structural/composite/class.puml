@@ -1,6 +1,17 @@
 @startuml
 title Composite
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Compose objects into tree structures for part-whole hierarchies. Treat both uniformly.
+
+**Use when**: Tree-like structures (file systems, UI components).
+
+**Key participants**: Component, Leaf, Composite.
+endlegend
+
 interface Component {
   +operation()
 }

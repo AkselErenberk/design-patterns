@@ -1,6 +1,17 @@
 @startuml
 title Strategy
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Encapsulate interchangeable algorithms; let them vary independently from clients.
+
+**Use when**: Choose algorithm at runtime; avoid conditional logic.
+
+**Key participants**: Context, Strategy, ConcreteStrategy.
+endlegend
+
 class Context {
   -strategy : Strategy
   +setStrategy(s: Strategy)

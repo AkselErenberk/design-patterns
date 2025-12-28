@@ -1,6 +1,17 @@
 @startuml
 title Chain of Responsibility
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Pass requests along a chain; let multiple objects try handling it.
+
+**Use when**: Decouple sender from receiver; flexible routing.
+
+**Key participants**: Handler, ConcreteHandler, chain links.
+endlegend
+
 abstract class Handler {
   -next : Handler
   +setNext(h: Handler) : Handler

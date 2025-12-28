@@ -1,6 +1,17 @@
 @startuml
 title Decorator
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Attach responsibilities to objects dynamically; flexible alternative to subclassing.
+
+**Use when**: Need to add features to instances at runtime.
+
+**Key participants**: Component, ConcreteComponent, Decorator, ConcreteDecorator.
+endlegend
+
 interface Component {
   +operation()
 }

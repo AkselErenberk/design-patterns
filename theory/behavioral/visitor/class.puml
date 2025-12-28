@@ -1,6 +1,17 @@
 @startuml
 title Visitor
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Define operations on object structures without changing the element classes.
+
+**Use when**: Need to add operations frequently; elements are stable.
+
+**Key participants**: Visitor, ConcreteVisitor, Element, ConcreteElement, ObjectStructure.
+endlegend
+
 interface Visitor {
   +visitElementA(e: ConcreteElementA)
   +visitElementB(e: ConcreteElementB)

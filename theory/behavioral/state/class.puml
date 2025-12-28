@@ -1,6 +1,17 @@
 @startuml
 title State
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Allow an object to change behavior when its internal state changes; appears to change its class.
+
+**Use when**: Object behavior depends on state and must change at runtime.
+
+**Key participants**: Context, State, ConcreteState.
+endlegend
+
 class Context {
   -state : State
   +setState(s: State)

@@ -1,6 +1,17 @@
 @startuml
 title Mediator
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Encapsulate interactions among objects; promote loose coupling.
+
+**Use when**: Complex inter-object communication; reduce direct references.
+
+**Key participants**: Mediator, ConcreteMediator, Colleague.
+endlegend
+
 interface Mediator {
   +notify(sender: Colleague, event:String)
 }

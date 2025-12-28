@@ -1,6 +1,17 @@
 @startuml
 title Observer
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: One-to-many dependency; notify dependents automatically on state change.
+
+**Use when**: Event systems, GUI, reactive updates.
+
+**Key participants**: Subject, Observer, ConcreteSubject, ConcreteObserver.
+endlegend
+
 interface Observer {
   +update(subject: Subject)
 }

@@ -1,6 +1,17 @@
 @startuml
 title Prototype
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Specify the kinds of objects to create using a prototypical instance; create new objects by copying the prototype.
+
+**Use when**: Object creation is expensive or complex; you want to avoid subclasses for configuring instances.
+
+**Key participants**: Prototype, ConcretePrototype, Client.
+endlegend
+
 interface Prototype {
   +clone() : Prototype
 }

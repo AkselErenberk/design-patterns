@@ -1,6 +1,17 @@
 @startuml
 title Singleton
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Ensure a class has only one instance and provide a global access point.
+
+**Use when**: Shared resources, configuration, registries.
+
+**Note**: Beware of testability and hidden dependencies.
+endlegend
+
 class Singleton {
   -instance : Singleton
   -Singleton()

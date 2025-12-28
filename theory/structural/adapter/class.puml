@@ -1,6 +1,17 @@
 @startuml
 title Adapter
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Convert the interface of a class into another interface clients expect.
+
+**Use when**: Integrating incompatible interfaces, legacy code.
+
+**Key participants**: Target, Adapter, Adaptee, Client.
+endlegend
+
 interface Target {
   +request()
 }

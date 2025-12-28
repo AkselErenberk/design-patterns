@@ -1,6 +1,17 @@
 @startuml
 title Configuration (Assembly Pattern)
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Reify (make explicit) the assembly of objects forming a composite/complex structure (often via configuration/metadata/DI).
+
+**Use when**: You want to externalize wiring of object graphs (DI containers, config files).
+
+**Key participants**: Configuration, Configurator, Component, Composite.
+endlegend
+
 interface Component {
   +operation()
 }

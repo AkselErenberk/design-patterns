@@ -1,6 +1,17 @@
 @startuml
 title Interceptor
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Provide hotspots to add concerns dynamically (logging, auth, metrics) around invocations.
+
+**Use when**: Cross-cutting concerns without tangling primary logic.
+
+**Key participants**: Interceptor, InvocationContext, InterceptorChain, Target.
+endlegend
+
 class InvocationContext {
   +proceed()
   +getData()

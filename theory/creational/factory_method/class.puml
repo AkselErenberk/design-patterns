@@ -1,6 +1,17 @@
 @startuml
 title Factory Method
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Define an interface for creating an object; let subclasses decide which class to instantiate.
+
+**Use when**: A class cannot anticipate the class of objects it must create, or wants to localize object creation.
+
+**Key participants**: Creator, ConcreteCreator, Product, ConcreteProduct.
+endlegend
+
 interface Product
 
 abstract class Creator {

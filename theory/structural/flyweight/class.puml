@@ -1,6 +1,17 @@
 @startuml
 title Flyweight
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Share fine-grained objects efficiently; separate intrinsic (shared) from extrinsic (context) state.
+
+**Use when**: Large numbers of similar objects (e.g., characters, tiles).
+
+**Key participants**: Flyweight, ConcreteFlyweight, FlyweightFactory.
+endlegend
+
 interface Flyweight {
   +operation(extrinsicState)
 }

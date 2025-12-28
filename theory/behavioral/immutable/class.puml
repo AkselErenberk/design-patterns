@@ -1,6 +1,17 @@
 @startuml
 title Immutable Object
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Prevent objects from being modified; safer sharing, easier concurrency.
+
+**Use when**: Value objects (Money, DateTime), thread safety, caching keys.
+
+**Key participants**: An immutable class with final fields, no setters, construction via constructor/builder/copy.
+endlegend
+
 class Money <<immutable>> {
   -amount : int
   -currency : String

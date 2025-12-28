@@ -1,6 +1,17 @@
 @startuml
 title Template Method
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Define the skeleton of an algorithm; let subclasses override specific steps.
+
+**Use when**: Common process with customizable steps.
+
+**Key participants**: AbstractClass, ConcreteClass.
+endlegend
+
 abstract class AbstractClass {
   +templateMethod()
   #primitiveOp1()

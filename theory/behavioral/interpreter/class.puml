@@ -1,6 +1,17 @@
 @startuml
 title Interpreter
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Define a grammar and an interpreter to evaluate expressions in the language.
+
+**Use when**: Simple grammars; frequent new sentences; parse trees.
+
+**Key participants**: AbstractExpression, TerminalExpression, NonterminalExpression, Context.
+endlegend
+
 class Context {
   +lookup(symbol:String)
 }

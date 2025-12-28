@@ -1,6 +1,17 @@
 @startuml
 title Facade
 
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
+
+legend right
+**Intent**: Provide a unified, simpler interface to a subsystem.
+
+**Use when**: Reduce complexity; provide an entry point.
+
+**Key participants**: Facade, Subsystem classes.
+endlegend
+
 class Facade {
   +operation()
 }

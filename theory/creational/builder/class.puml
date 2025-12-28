@@ -1,37 +1,35 @@
 @startuml
-title Abstract Factory
+title Builder
 
-interface AbstractProductA
-interface AbstractProductB
+skinparam legendBackgroundColor #f9f9f9
+skinparam legendBorderColor #999999
 
-interface AbstractFactory {
-  +createA() : AbstractProductA
-  +createB() : AbstractProductB
+legend right
+**Intent**: Separate construction from representation so the same build process can create different representations.
+
+**Use when**: Building complex objects step-by-step, controlling construction sequence.
+
+**Key participants**: Director, Builder, ConcreteBuilder, Product.
+endlegend
+
+
+class Director {
+  +construct(builder: Builder)
 }
 
-class ConcreteFactory1
-class ConcreteFactory2
+interface Builder {
+  +buildPartA()
+  +buildPartB()
+  +getResult() : Product
+}
 
-class ConcreteProductA1
-class ConcreteProductB1
-class ConcreteProductA2
-class ConcreteProductB2
+class ConcreteBuilder1
+class ConcreteBuilder2
+class Product
 
-AbstractFactory <|.. ConcreteFactory1
-AbstractFactory <|.. ConcreteFactory2
-
-AbstractProductA <|.. ConcreteProductA1
-AbstractProductA <|.. ConcreteProductA2
-AbstractProductB <|.. ConcreteProductB1
-AbstractProductB <|.. ConcreteProductB2
-
-ConcreteFactory1 ..> ConcreteProductA1 : creates
-ConcreteFactory1 ..> ConcreteProductB1 : creates
-ConcreteFactory2 ..> ConcreteProductA2 : creates
-ConcreteFactory2 ..> ConcreteProductB2 : creates
-
-class Client
-Client ..> AbstractFactory : uses
-Client ..> AbstractProductA
-Client ..> AbstractProductB
+Director ..> Builder : orchestrates
+Builder <|.. ConcreteBuilder1
+Builder <|.. ConcreteBuilder2
+ConcreteBuilder1 ..> Product : builds
+ConcreteBuilder2 ..> Product : builds
 @enduml
