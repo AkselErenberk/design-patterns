@@ -1,15 +1,39 @@
 @startuml
-title Bridge
+title Bridge / (Handle/Body)
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Decouple an abstraction from its implementation so both can vary independently.
 
-**Use when**: Need to avoid a combinatorial explosion of subclasses (e.g., shapes vs. rendering APIs).
+**Intent**:
+Decouple abstraction from implementation so both vary independently.
 
-**Key participants**: Abstraction, RefinedAbstraction, Implementor, ConcreteImplementor.
+**Motivation**:
+Need to avoid a combinatorial explosion of subclasses
+(e.g., shapes vs. rendering APIs).
+
+**Applicability**:
+Multiply-dimension variability (e.g., device type × protocol).
+Stable abstraction with changing implementations.
+
+**Participants**:
+Abstraction maintains Implementor reference; delegates work.
+
+**Consequences**:
+Pros: Independently extensible hierarchies; reduces subclass explosion.
+Cons: Slight complexity; careful lifecycle coordination.
+
+**Implementation Notes**:
+Inject implementor; support switching at runtime if needed.
+Different from Adapter: planning variability upfront.
+
+**Known Uses**:
+GUI toolkit look-and-feel separation; JDBC Driver vs higher-level abstractions.
+
+**Related Patterns**:
+Adapter, Strategy (algorithm selection), Abstract Factory (create implementors).
+
 endlegend
 
 interface Implementor {

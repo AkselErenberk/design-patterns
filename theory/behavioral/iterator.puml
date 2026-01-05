@@ -1,15 +1,36 @@
 @startuml
-title Iterator
+title Iterator / Cursor
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Provide sequential access to elements without exposing representation.
 
-**Use when**: Collections wish to offer uniform traversal.
+**Intent**:
+Provide sequential access to elements without exposing representation.
 
-**Key participants**: Iterator, ConcreteIterator, Aggregate, ConcreteAggregate.
+**Motivation**:
+Collections expose uniform iteration semantics (for-each).
+
+**Applicability**:
+Provide multiple traversal strategies; decouple structure from traversal.
+
+**Participants**:
+Aggregate creates iterator; Iterator navigates.
+
+**Consequences**:
+Pros: Uniform traversal; multiple iterators concurrently.
+Cons: Fail-fast vs. snapshot semantics; concurrent modification issues.
+
+**Implementation Notes**:
+Provide external vs internal iteration; generator/yield in languages supporting it.
+
+**Known Uses**:
+Java Iterator, Iterable; Python iterators/generators.
+
+**Related Patterns**:
+Composite (tree traversal), Visitor (processing while iterating).
+
 endlegend
 
 interface Iterator {

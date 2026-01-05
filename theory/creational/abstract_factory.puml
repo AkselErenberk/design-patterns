@@ -1,17 +1,45 @@
 @startuml
-title Abstract Factory
+title Abstract Factory / Kit
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Create families of related/dependent objects without specifying concrete classes.
 
-**Use when**: You need to ensure products are created from the same family and can vary together (e.g., GUI themes, database drivers).
+**Intent**:
+Create families of related/dependent objects without specifying concrete classes.
 
-**Key participants**: AbstractFactory, ConcreteFactory, AbstractProductA/B, ConcreteProductA/B, Client.
+**Motivation**:
+You need to ensure products are created from the same family and can vary together
+(e.g., GUI themes, database drivers).
+
+**Applicability**:
+You need products from the same “family” to be used together.
+Need to vary the family at runtime/configuration time.
+Enforce compatibility constraints among created objects.
+
+**Participants & Collaborations**:
+AbstractFactory defines creation methods per product type.
+ConcreteFactoryX produces matching concrete products.
+Client uses the factory and remains agnostic to concretes.
+
+**Consequences**:
+Pros: Ensures product consistency; isolates concrete classes; supports switching families.
+Cons: More classes/interfaces; rigid when adding new product types (requires updating all factories).
+
+**Implementation Notes**:
+Use composition/dependency injection to pass chosen factory into clients.
+Consider factories as singletons or configured via a container.
+Often paired with Factory Method inside concrete factories.
+
+**Known Uses**:
+Java javax.xml.parsers.DocumentBuilderFactory, javax.net.ssl.SSLContext
+GUI factories in Swing/JavaFX; DI containers assembling families of services.
+
+**Related Patterns**:
+Factory Method, Builder, Prototype; often combined with Facade and DI/Configuration.
+
 endlegend
-
 
 interface AbstractProductA
 interface AbstractProductB

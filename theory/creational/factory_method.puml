@@ -1,15 +1,39 @@
 @startuml
-title Factory Method
+title Factory Method / Virtual Constructor
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Define an interface for creating an object; let subclasses decide which class to instantiate.
 
-**Use when**: A class cannot anticipate the class of objects it must create, or wants to localize object creation.
+**Intent**:
+Define an interface for creating an object; let subclasses decide which class to instantiate.
 
-**Key participants**: Creator, ConcreteCreator, Product, ConcreteProduct.
+**Motivation**:
+A class cannot anticipate the class of objects it must create, or wants to localize object creation.
+
+**Applicability**:
+Creator class shouldn’t hardcode product types.
+Need extension points for instantiation.
+
+**Participants**:
+Creator provides factoryMethod overrides.
+ConcreteCreator picks ConcreteProduct.
+
+**Consequences**:
+Pros: Defer instantiation; supports frameworks and extension.
+Cons: Proliferates subclasses; still couples concrete creators to concrete products.
+
+**Implementation Notes**:
+Template Method often calls factoryMethod internally.
+Can be replaced by DI in modern systems.
+
+**Known Uses**:
+Java java.util.Calendar#getInstance(), LoggerFactory#getLogger.
+
+**Related Patterns**:
+Abstract Factory, Template Method, Strategy.
+
 endlegend
 
 interface Product

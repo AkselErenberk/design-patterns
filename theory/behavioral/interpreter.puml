@@ -1,15 +1,36 @@
 @startuml
-title Interpreter
+title Interpreter / Expression Tree
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Define a grammar and an interpreter to evaluate expressions in the language.
 
-**Use when**: Simple grammars; frequent new sentences; parse trees.
+**Intent**:
+Represent grammar and interpret sentences.
 
-**Key participants**: AbstractExpression, TerminalExpression, NonterminalExpression, Context.
+**Motivation**:
+Evaluate simple DSLs: arithmetic expressions, filters.
+
+**Applicability**:
+Simple grammars; frequent evaluation; parser is regular.
+
+**Participants**:
+Terminal/Nonterminal expressions compose; Context provides environment.
+
+**Consequences**:
+Pros: Easy to extend grammar; composable syntax tree.
+Cons: Inefficient for complex grammars; many classes.
+
+**Implementation Notes**:
+Consider parser generators or Visitor for evaluation over AST.
+
+**Known Uses**:
+Regex engines; rule engines; query DSLs.
+
+**Related Patterns**:
+Composite (AST), Visitor (operations), Flyweight (shared nodes).
+
 endlegend
 
 class Context {

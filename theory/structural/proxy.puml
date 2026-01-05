@@ -1,15 +1,36 @@
 @startuml
-title Proxy
+title Proxy / Surrogate
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Provide a surrogate/placeholder to control access (lazy loading, remote, protection).
 
-**Use when**: Control access, defer expensive operations, add caching/auth.
+**Intent**:
+Placeholder to control access to a real subject.
 
-**Key participants**: Subject, RealSubject, Proxy.
+**Motivation**:
+Lazy loading, remote proxies, protection proxies, caching.
+
+**Applicability**:
+Control lifecycle or access; remote communication; expensive operations.
+
+**Participants**:
+Proxy implements Subject, forwards, adds control logic.
+
+**Consequences**:
+Pros: Access control; lazy init; caching; remote transparency.
+Cons: More indirection; need to handle failure/retries in remote proxies.
+
+**Implementation Notes**:
+Use virtual proxy for lazy initialization; remote proxy for IPC; protection proxy for auth.
+
+**Known Uses**:
+Java RMI proxies; Hibernate lazy proxies; java.lang.reflect.Proxy.
+
+**Related Patterns**:
+Decorator (adds behavior but not necessarily access control), Adapter.
+
 endlegend
 
 interface Subject {

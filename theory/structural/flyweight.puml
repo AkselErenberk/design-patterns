@@ -1,15 +1,39 @@
 @startuml
-title Flyweight
+title Flyweight / Cache of shared objects
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Share fine-grained objects efficiently; separate intrinsic (shared) from extrinsic (context) state.
 
-**Use when**: Large numbers of similar objects (e.g., characters, tiles).
+**Intent**:
+Share fine-grained objects efficiently;
+separate intrinsic (shared) from extrinsic (context) state.
 
-**Key participants**: Flyweight, ConcreteFlyweight, FlyweightFactory.
+**Motivation**:
+Large numbers of similar objects (e.g., characters, tiles).
+
+**Applicability**:
+High-volume, immutable intrinsic state shared; extrinsic state passed per use.
+
+**Participants**:
+FlyweightFactory manages shared instances in a pool.
+
+**Consequences**:
+Pros: Drastic memory reduction.
+Cons: Complex separation of state; requires disciplined usage.
+
+**Implementation Notes**:
+Ensure immutability of intrinsic state.
+Use key-based caches; careful synchronization.
+
+**Known Uses**:
+Java Integer.valueOf, String interning.
+Graphics engines (sprites, glyphs).
+
+**Related Patterns**:
+Prototype (copy), Object Pool, Immutable.
+
 endlegend
 
 interface Flyweight {

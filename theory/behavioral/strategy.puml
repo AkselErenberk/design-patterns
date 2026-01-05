@@ -1,15 +1,36 @@
 @startuml
-title Strategy
+title Strategy / Policy
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Encapsulate interchangeable algorithms; let them vary independently from clients.
 
-**Use when**: Choose algorithm at runtime; avoid conditional logic.
+**Intent**:
+Encapsulate interchangeable algorithms; let them vary independently from clients.
 
-**Key participants**: Context, Strategy, ConcreteStrategy.
+**Motivation**:
+Choose algorithm at runtime; avoid conditional logic.
+
+**Applicability**:
+Algorithm families; avoid conditional logic; runtime selection.
+
+**Participants**:
+Context uses Strategy; Strategy encapsulates algorithm.
+
+**Consequences**:
+Pros: Replace algorithms easily; test independently.
+Cons: More objects; clients must know/select strategies.
+
+**Implementation Notes**:
+Configure via DI; expose simple selection API.
+
+**Known Uses**:
+Java Comparator; Collections.sort with strategy.
+
+**Related Patterns**:
+State, Template Method, Factory Method.
+
 endlegend
 
 class Context {

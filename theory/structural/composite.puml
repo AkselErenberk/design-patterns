@@ -1,15 +1,36 @@
 @startuml
-title Composite
+title Composite / Part-Whole
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Compose objects into tree structures for part-whole hierarchies. Treat both uniformly.
 
-**Use when**: Tree-like structures (file systems, UI components).
+**Intent**:
+Compose objects into trees; treat leaves and composites uniformly.
 
-**Key participants**: Component, Leaf, Composite.
+**Motivation**:
+Tree-like structures (file systems, UI components, organizational hierarchies).
+
+**Applicability**:
+Recursive composition required; clients treat groups and items uniformly.
+
+**Participants**:
+Component common interface; Leaf and Composite implement it.
+
+**Consequences**:
+Pros: Uniform treatment; easy to add new component types.
+Cons: Can make constraints harder (e.g., limiting child types).
+
+**Implementation Notes**:
+Manage parent references, iteration, and validation.
+Combine with Iterator for traversal and Visitor for operations.
+
+**Known Uses**:
+Swing/JavaFX scene graphs; DOM trees.
+
+**Related Patterns**: Iterator, Visitor, Decorator.
+
 endlegend
 
 interface Component {

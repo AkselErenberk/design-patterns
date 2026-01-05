@@ -1,15 +1,36 @@
 @startuml
-title Chain of Responsibility
+title Chain of Responsibility / Chain / Pipeline
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Pass requests along a chain; let multiple objects try handling it.
 
-**Use when**: Decouple sender from receiver; flexible routing.
+**Intent**:
+Pass requests along a chain; let multiple objects try handling it.
 
-**Key participants**: Handler, ConcreteHandler, chain links.
+**Motivation**:
+Validation steps, authorization, event handling where multiple handlers may act or stop.
+
+**Applicability**:
+Multiple potential handlers; flexible routing; avoid hard-coded sender/receiver.
+
+**Participants**:
+Handler holds next; each decides to handle or pass on.
+
+**Consequences**:
+Pros: Loose coupling; reorder handlers; add/remove easily.
+Cons: Hard to ensure an ultimate handler; debugging path.
+
+**Implementation Notes**:
+Return values to indicate handled vs pass-through; consider short-circuiting.
+
+**Known Uses**:
+Logging frameworks; GUI event handling; middleware pipelines.
+
+**Related Patterns**:
+Interceptor, Decorator, Command.
+
 endlegend
 
 abstract class Handler {

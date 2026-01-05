@@ -1,15 +1,34 @@
 @startuml
-title Immutable Object
+title Immutable Object / Value Object / Persistent Object
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Prevent objects from being modified; safer sharing, easier concurrency.
 
-**Use when**: Value objects (Money, DateTime), thread safety, caching keys.
+**Intent**:
+Prevent modification; safer sharing, easier concurrency.
 
-**Key participants**: An immutable class with final fields, no setters, construction via constructor/builder/copy.
+**Motivation**:
+Value objects (Money, DateTime), thread safety, caching keys.
+
+**Participants & Collaborations**:
+Immutable types return new instances on “changes”; used broadly across systems.
+
+**Consequences**:
+Pros: Thread-safe; no defensive copies; simpler reasoning.
+Cons: Potential allocation overhead; need builders for complex objects.
+
+**Implementation Notes**:
+Make fields final; no setters; defensive copies of mutable inputs.
+Consider builders for usability; interning for frequent values.
+
+**Known Uses**:
+Java String, LocalDate, BigDecimal; C# String, DateTimeOffset.
+
+**Related Patterns**:
+Flyweight (sharing), Builder (construction), Memento (state capture).
+
 endlegend
 
 class Money <<immutable>> {

@@ -5,11 +5,34 @@ skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Ensure a class has only one instance and provide a global access point.
 
-**Use when**: Shared resources, configuration, registries.
+**Intent**:
+Ensure one instance; provide global access.
 
-**Note**: Beware of testability and hidden dependencies.
+**Motivation**:
+Shared resource/config (e.g., registry) requiring single point of truth.
+
+**Applicability**:
+Exactly one instance required; globally accessible.
+Resource coordination (e.g., cache, printer spooler).
+
+**Participants & Collaborations**:
+Singleton holds private static instance and accessor.
+
+**Consequences**:
+Pros: Controlled single instance; lazy init; centralized resource.
+Cons: Hidden dependencies; global state hurts testability; lifecycle coupling.
+
+**Implementation Notes**:
+Thread-safe lazy init (e.g., double-checked locking) or eager init.
+Prefer DI containers and scopes; replace with module-level functions in FP.
+
+**Known Uses**:
+Java Runtime, Desktop, Logger singletons in frameworks.
+OS singletons (clipboard, input managers).
+
+**Related Patterns**: Facade (single point), Monostate, Service Locator (anti-pattern vs DI).
+
 endlegend
 
 class Singleton {

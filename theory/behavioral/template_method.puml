@@ -1,15 +1,37 @@
 @startuml
-title Template Method
+title Template Method / Hook Method
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Define the skeleton of an algorithm; let subclasses override specific steps.
 
-**Use when**: Common process with customizable steps.
+**Intent**:
+Define algorithm skeleton and let subclasses redefine steps.
 
-**Key participants**: AbstractClass, ConcreteClass.
+**Motivation**:
+Common process with customizable steps.
+
+**Applicability**:
+Fixed workflow with flexible steps; framework extension points.
+
+**Participants**:
+AbstractClass holds template; ConcreteClass overrides primitives.
+
+**Consequences**:
+Pros: Enforces sequence; reuse; inversion of control.
+Cons: Inheritance coupling; less flexible than composition.
+
+**Implementation Notes**:
+Hooks (optional steps) via default no-op implementations.
+
+**Known Uses**:
+JUnit lifecycle (@Before, @After hooks conceptually template-like).
+Servlet lifecycle methods (init, service, destroy).
+
+**Related Patterns**:
+Strategy (composition), Factory Method (step override), Hook methods.
+
 endlegend
 
 abstract class AbstractClass {

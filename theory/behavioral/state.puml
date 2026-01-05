@@ -1,15 +1,36 @@
 @startuml
-title State
+title State / Objects for States
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Allow an object to change behavior when its internal state changes; appears to change its class.
 
-**Use when**: Object behavior depends on state and must change at runtime.
+**Intent**:
+Change behavior when internal state changes; appears to change class.
 
-**Key participants**: Context, State, ConcreteState.
+**Motivation**:
+Object behavior depends on state and must change at runtime.
+
+**Applicability**:
+Behavior depends on current state; complex conditional logic.
+
+**Participants**:
+Context holds State; State objects implement behavior transitions.
+
+**Consequences**:
+Pros: Removes conditionals; localizes state logic; easy to add states.
+Cons: More classes; transitions may be distributed.
+
+**Implementation Notes**:
+States can be singletons; transitions occur within handle().
+
+**Known Uses**:
+UI components enabled/disabled; parsers; workflow engines.
+
+**Related Patterns**:
+Strategy (no internal transitions), Flyweight (share states), Singleton (per-state).
+
 endlegend
 
 class Context {

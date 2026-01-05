@@ -1,15 +1,36 @@
 @startuml
-title Memento
+title Memento / Token / Snapshot
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Capture and externalize an object’s internal state without breaking encapsulation; restore later.
 
-**Use when**: Undo/rollback; checkpoints.
+**Intent**:
+Capture and externalize object state to restore later without breaking encapsulation.
 
-**Key participants**: Originator, Memento, Caretaker.
+**Motivation**:
+Undo/redo editors; checkpoints.
+
+**Applicability**:
+Need rollback; audit; snapshot/restore.
+
+**Participants**:
+Originator creates/consumes mementos; Caretaker stores them.
+
+**Consequences**:
+Pros: Encapsulation preserved; simple undo.
+Cons: Memory overhead; serialization complexity.
+
+**Implementation Notes**:
+Consider differential mementos; compress; cap history.
+
+**Known Uses**:
+Text editors; transactional systems.
+
+**Related Patterns**:
+Command (undo), Prototype (copy), Snapshot testing.
+
 endlegend
 
 class Originator {

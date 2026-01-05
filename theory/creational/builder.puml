@@ -1,15 +1,44 @@
 @startuml
-title Builder
+title Builder / Fluent Builder
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Separate construction from representation so the same build process can create different representations.
 
-**Use when**: Building complex objects step-by-step, controlling construction sequence.
+**Intent**:
+Separate construction from representation
+so the same build process can create different representations.
 
-**Key participants**: Director, Builder, ConcreteBuilder, Product.
+**Motivation**:
+Creating complex objects (e.g., HTTP requests, immutable DTOs)
+with many optional parts, controlling construction sequence.
+
+**Applicability**:
+Complex construction logic; need to vary internal composition.
+Want fluent, readable assembly; avoid telescoping constructors.
+
+**Participants & Collaborations**:
+Director orchestrates steps.
+Builder defines steps and retrieval of result.
+ConcreteBuilder provides specific part assembly.
+
+**Consequences**:
+Pros: Clear separation of steps; supports varying representations; readable fluent API.
+Cons: More types and code; sometimes overkill for simple construction.
+
+**Implementation Notes**:
+Fluent methods returning this (mutable) or new instances (immutable).
+For thread-safety, prefer immutable builders returning new objects.
+Director is optional; client can drive steps directly.
+
+**Known Uses**:
+Java’s StringBuilder, Stream.Builder.
+HTTP clients building requests (OkHttp, Spring WebClient, Apache HttpClient).
+
+**Related Patterns**: Abstract Factory (families), Prototype (copying),
+Composite (assembling nested parts).
+
 endlegend
 
 

@@ -1,15 +1,38 @@
 @startuml
-title Facade
+title Facade / Façade
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Provide a unified, simpler interface to a subsystem.
 
-**Use when**: Reduce complexity; provide an entry point.
+**Intent**:
+Provide a unified, simpler interface to a subsystem.
 
-**Key participants**: Facade, Subsystem classes.
+**Motivation**:
+Reduce complexity; provide an entry point.
+
+**Applicability**:
+Reduce learning curve; hide complexity; decouple clients from subsystem.
+
+**Participants**:
+Facade delegates to multiple subsystem classes.
+
+**Consequences**:
+Pros: Cleaner API; decoupling; easier maintenance.
+Cons: Risk of god-object; may hide important features.
+
+**Implementation Notes**:
+Keep facade thin; consider multiple facades per context.
+Combine with DI to inject subsystems.
+
+**Known Uses**:
+Spring’s RestTemplate / WebClient facades over HTTP; Hibernate Session.
+
+**Related Patterns**:
+Adapter (change interface), Mediator (coordinate colleagues),
+Singleton (single access point).
+
 endlegend
 
 class Facade {

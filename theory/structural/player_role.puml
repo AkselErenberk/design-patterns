@@ -1,15 +1,36 @@
 @startuml
-title Player-Role
+title Player-Role (Role Object / DCI)
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Allow objects (Players) to acquire/drop dynamic roles at runtime without changing the player’s class.
 
-**Use when**: Context-dependent behavior (e.g., user roles, game character roles).
+**Intent**:
+Allow objects (Players) to dynamically acquire/drop roles at runtime without changing the player’s class.
 
-**Key participants**: Player, Role, ConcreteRole, RoleBinding.
+**Motivation**:
+Context-dependent behavior (e.g., user roles, game character roles).
+
+**Applicability**:
+Context-driven behavior changes; avoid subclass explosion; runtime role attachment.
+
+**Participants**:
+Player holds current roles; Role provides behaviors.
+
+**Consequence**:
+Pros: Runtime flexibility; separation of concerns; context clarity.
+Cons: Complexity in role lifecycle; discoverability of behavior.
+
+**Implementation Notes**:
+Use composition over inheritance; roles can be stateful; guard role conflicts.
+
+**Known Uses**:
+DCI architecture examples (ata-Context-Interaction); RBAC systems; game engines (character roles/perks).
+
+**Related Patterns**:
+Strategy (algorithm role), State (internal role changes), Decorator (attach behavior).
+
 endlegend
 
 class Player {

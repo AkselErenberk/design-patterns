@@ -1,15 +1,39 @@
 @startuml
-title Decorator
+title Decorator / Wrapper (behavioral extension)
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Attach responsibilities to objects dynamically; flexible alternative to subclassing.
 
-**Use when**: Need to add features to instances at runtime.
+**Intent**:
+Attach responsibilities to objects dynamically; flexible alternative to subclassing.
 
-**Key participants**: Component, ConcreteComponent, Decorator, ConcreteDecorator.
+**Motivation**:
+Need to add features to instances at runtime
+(e.g. caching/logging/compression/encryption).
+
+**Applicability**:
+Need flexible, composable behavior enhancements per instance.
+
+**Participants**:
+Decorator wraps a Component and forwards/augments calls.
+
+**Consequences**:
+Pros: Composable features; per-instance variability; open/closed principle.
+Cons: Many small objects; debugging stacked decorators can be tricky.
+
+**Implementation Notes**:
+Keep decorator interface consistent with component.
+Consider ordering and idempotency of decorators.
+
+**Known Uses**:
+Java IO streams (BufferedInputStream, GZIPInputStream).
+Servlet filters (decorator-like pipelines).
+
+**Related Patterns**:
+Composite, Adapter, Strategy, Chain of Responsibility.
+
 endlegend
 
 interface Component {

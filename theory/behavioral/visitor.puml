@@ -1,15 +1,36 @@
 @startuml
-title Visitor
+title Visitor / Double Dispatch
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Define operations on object structures without changing the element classes.
 
-**Use when**: Need to add operations frequently; elements are stable.
+**Intent**:
+Add operations to object structures without changing elements.
 
-**Key participants**: Visitor, ConcreteVisitor, Element, ConcreteElement, ObjectStructure.
+**Motivation**:
+Need to add operations frequently; elements are stable.
+
+**Applicability**:
+Stable element hierarchy, frequently changing operations.
+
+**Participants**:
+Element.accept(visitor) calls back visitor.visit(this).
+
+**Consequences**:
+Pros: Add operations without modifying elements; separation of concerns.
+Cons: Hard to add new element types (touch many visitors); double-dispatch boilerplate.
+
+**Implementation Notes**:
+Use over composite structures; consider Acyclic Visitor to mitigate dependencies.
+
+**Known Uses**:
+Compilers/linters; XML/JSON tree processing.
+
+**Related Patterns**:
+Composite, Iterator, Interpreter.
+
 endlegend
 
 interface Visitor {

@@ -1,15 +1,36 @@
 @startuml
-title Mediator
+title Mediator / Controller
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Encapsulate interactions among objects; promote loose coupling.
 
-**Use when**: Complex inter-object communication; reduce direct references.
+**Intent**:
+Encapsulate interactions among objects; promote loose coupling.
 
-**Key participants**: Mediator, ConcreteMediator, Colleague.
+**Motivation**:
+Forms/UI controls interacting via central mediator (dialog coordination).
+
+**Applicability**:
+Complex interaction networks; reduce direct dependencies.
+
+**Participants**:
+Mediator centralizes interactions; Colleagues communicate via mediator.
+
+**Consequences**:
+Pros: Reduced coupling; focused interaction logic.
+Cons: Mediator can become complex; potential god-object.
+
+**Implementation Notes**:
+Use event buses; message passing; keep mediator cohesive.
+
+**Known Uses**:
+UI frameworks; message brokers; chat rooms.
+
+**Related Patterns**:
+Observer (pub/sub), Facade (simplify), Command (actions).
+
 endlegend
 
 interface Mediator {

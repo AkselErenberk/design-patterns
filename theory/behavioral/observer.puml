@@ -1,15 +1,36 @@
 @startuml
-title Observer
+title Observer / Publish-Subscribe / Listener
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: One-to-many dependency; notify dependents automatically on state change.
 
-**Use when**: Event systems, GUI, reactive updates.
+**Intent**:
+One-to-many dependency with automatic notifications on state change.
 
-**Key participants**: Subject, Observer, ConcreteSubject, ConcreteObserver.
+**Motivation**:
+GUI event listeners, reactive streams.
+
+**Applicability**:
+Event-driven systems; decouple subjects from subscribers.
+
+**Participants**:
+Subject maintains observers; observers implement update.
+
+**Consequences**:
+Pros: Loose coupling; dynamic subscriptions.
+Cons: Notification storms; ordering; memory leaks if not detached.
+
+**Implementation Notes**:
+Weak references; event buses; backpressure for reactive streams.
+
+**Known Uses**:
+Java PropertyChangeSupport, RxJava/Reactive Streams; GUI listeners.
+
+**Related Patterns**:
+Mediator (central coordination), Event Sourcing, Iterator (reactive flows).
+
 endlegend
 
 interface Observer {

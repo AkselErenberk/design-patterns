@@ -1,15 +1,37 @@
 @startuml
-title Interceptor
+title Interceptor / AOP Interceptor / Filter
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Provide hotspots to add concerns dynamically (logging, auth, metrics) around invocations.
 
-**Use when**: Cross-cutting concerns without tangling primary logic.
+**Intent**:
+Provide hotspots to add cross-cutting concerns dynamically (logging, auth, metrics).
 
-**Key participants**: Interceptor, InvocationContext, InterceptorChain, Target.
+**Motivation**:
+Insert behavior before/after method invocation without modifying core code.
+
+**Applicability**:
+Aspect-oriented needs; pluggable pipelines; request processing.
+
+**Participants**:
+InterceptorChain executes interceptors around a Target.
+
+**Consequences**:
+Pros: Modular cross-cutting concerns; easy enabling/disabling.
+Cons: Ordering dependencies; debugging stacks.
+
+**Implementation Notes**:
+Define well-formed proceed() semantics; handle exceptions uniformly.
+Combine with annotations/metadata for selection.
+
+**Known Uses**:
+Java EE Interceptors; Spring AOP; Servlet Filters; gRPC interceptors.
+
+**Related Patterns**:
+Decorator, Chain of Responsibility, Proxy.
+
 endlegend
 
 class InvocationContext {

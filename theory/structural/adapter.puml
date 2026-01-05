@@ -1,15 +1,36 @@
 @startuml
-title Adapter
+title Adapter / Wrapper
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Convert the interface of a class into another interface clients expect.
 
-**Use when**: Integrating incompatible interfaces, legacy code.
+**Intent**:
+Convert one interface to another expected by clients.
 
-**Key participants**: Target, Adapter, Adaptee, Client.
+**Motivation**:
+Integrate legacy/third-party component with incompatible method signatures.
+
+**Applicability**:
+You have an existing implementation but incompatible interface.
+Want to avoid refactoring clients or the adaptee.
+
+**Participants**:
+Target desired interface; Adaptee existing interface; Adapter translates.
+
+**Implementation Notes**:
+Class Adapter (inheritance) vs Object Adapter (composition).
+Handle exception, data-type, and semantic mismatches carefully.
+
+**Known Uses**:
+Java IO decorators often act as adapters; JDBC drivers;
+Collections.list(Enumeration) adapting legacy APIs.
+
+**Related Patterns**:
+Facade (simplify), Bridge (separate abstraction/implementation),
+Decorator (add behavior).
+
 endlegend
 
 interface Target {

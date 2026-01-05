@@ -5,11 +5,38 @@ skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Reify (make explicit) the assembly of objects forming a composite/complex structure (often via configuration/metadata/DI).
 
-**Use when**: You want to externalize wiring of object graphs (DI containers, config files).
+**Intent**:
+Reify (make explicit) the wiring/assembly of objects forming a composite/complex structure
+(often via configuration/metadata/DI).
 
-**Key participants**: Configuration, Configurator, Component, Composite.
+**Also known as**:
+Dependency Injection configuration, Object Composition configuration
+
+**Motivation**:
+Externalize composition rules; switch wiring without recompiling.
+
+**Applicability**:
+Systems with complex graphs; need runtime/environment-specific assembly.
+
+**Participants**:
+Configuration holds definitions.
+Configurator reads config and assembles components/composites.
+
+**Consequences**:
+Pros: Flexible assembly; environment-driven behavior; testability.
+Cons: Complexity; debugging wiring; requires validation.
+
+**Implementation Notes**:
+YAML/JSON/XML config; DI containers (Spring, Guice).
+Validation and schema for configs.
+
+**Known Uses**:
+Spring ApplicationContext XML/Java config; Kubernetes manifests (composing resources).
+
+**Related Patterns**:
+Composite, Builder, Facade, Service Locator (avoid), Strategy.
+
 endlegend
 
 interface Component {

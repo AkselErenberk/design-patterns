@@ -1,15 +1,36 @@
 @startuml
-title Command
+title Command / Action / Transaction
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Encapsulate a request as an object; support queuing, logging, undo.
 
-**Use when**: Decouple invoker from receiver; macro/undo operations.
+**Intent**:
+Encapsulate requests as objects; support queueing, logging, undo.
 
-**Key participants**: Command, ConcreteCommand, Receiver, Invoker.
+**Motivation**:
+UI menu actions, task scheduling, macro recording.
+
+**Applicability**:
+Parameterize invokers with operations; decouple sender from receiver.
+
+**Participants**:
+Invoker triggers; Command encapsulates; Receiver performs.
+
+**Consequences**:
+Pros: Queueing; undo/redo; macro; logs.
+Cons: Many small classes; need undo logic carefully.
+
+**Implementation Notes**:
+Store state for undo; composite commands for macro.
+
+**Known Uses**:
+Swing Actions; job schedulers; CQRS commands.
+
+**Related Patterns**:
+Memento (undo state), Composite (macro commands), Chain of Responsibility.
+
 endlegend
 
 interface Command {

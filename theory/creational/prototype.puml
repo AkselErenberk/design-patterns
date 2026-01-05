@@ -1,15 +1,40 @@
 @startuml
-title Prototype
+title Prototype / Clone
 
 skinparam legendBackgroundColor #f9f9f9
 skinparam legendBorderColor #999999
 
 legend right
-**Intent**: Specify the kinds of objects to create using a prototypical instance; create new objects by copying the prototype.
 
-**Use when**: Object creation is expensive or complex; you want to avoid subclasses for configuring instances.
+**Intent**:
+Create new objects by copying a prototype instance.
 
-**Key participants**: Prototype, ConcretePrototype, Client.
+**Motivation**:
+Object creation is expensive or complex; you want to avoid subclasses for configuring instances.
+
+**Applicability**:
+Costly or complex initialization; need many similar variants.
+Avoids subclassing for diverse configurations.
+
+**Participants**:
+Prototype defines clone.
+ConcretePrototype implements deep/partial copy.
+
+**Consequences**:
+Pros: Fast creation; dynamic configuration; reduce subclass explosion.
+Cons: Complex deep-copy semantics; cycles; external resources.
+
+**Implementation Notes**:
+Define deep vs. shallow copy semantics explicitly.
+Consider copy constructors or serializers for safe cloning.
+
+**Known Uses**:
+Java Object#clone() (caveats).
+Game engines spawning entities; document editors duplicating elements.
+
+**Related Patterns**:
+Factory Method (alternative instantiation), Memento (state capture), Flyweight (shared intrinsic state).
+
 endlegend
 
 interface Prototype {
