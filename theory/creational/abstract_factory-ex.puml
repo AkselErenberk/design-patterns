@@ -1,0 +1,40 @@
+
+@startuml
+title Abstract Factory — UI Desktop/Mobile
+
+' abstract products
+interface AbstractButton {
+    + render()
+}
+interface AbstractDialog {
+    + show()
+}
+
+' abstract factory
+interface UIAbstractFactory {
+    + createButton() : AbstractButton
+    + createDialog() : AbstractDialog
+}
+
+' Desktop family
+class DesktopFactory implements UIAbstractFactory
+class DesktopButton implements AbstractButton
+class DesktopDialog implements AbstractDialog
+
+' Mobile family
+class MobileFactory implements UIAbstractFactory
+class MobileButton implements AbstractButton
+class MobileDialog implements AbstractDialog
+
+class Client
+Client ..> UIAbstractFactory : "uses"
+Client ..> AbstractButton : "uses"
+Client ..> AbstractDialog : "uses"
+
+DesktopFactory ..> DesktopButton : creates
+DesktopFactory ..> DesktopDialog : creates
+MobileFactory ..> MobileButton : creates
+MobileFactory ..> MobileDialog : creates
+
+
+@enduml

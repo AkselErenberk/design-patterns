@@ -1,0 +1,13 @@
+@startuml
+title Abstract Factory — Séquence : bascule d'environnement
+
+actor Client
+Client -> UIAbstractFactory : (via config) get MobileFactory
+Client -> MobileFactory : createButton()
+MobileFactory --> Client : MobileButton
+Client -> MobileFactory : createDialog()
+MobileFactory --> Client : MobileDialog
+
+Client -> AbstractButton : render()
+Client -> AbstractDialog : show()
+@enduml
