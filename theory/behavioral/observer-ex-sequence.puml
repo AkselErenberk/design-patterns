@@ -1,0 +1,28 @@
+
+@startuml
+title Observer — Sequence : setState('Shipped') + exceptions caught
+
+actor Client
+Client -> OrderSubject : setState("Shipped")
+OrderSubject -> OrderSubject : notifyObservers()
+
+loop for each observer
+  OrderSubject -> EmailObserver : update(subject)
+  EmailObserver --> OrderSubject : ok
+
+  OrderSubject -> SMSObserver : update(subject)
+  note over SMSObserver
+    Throw exception (e.g.: SMS service unavailable)
+  end note
+  SMSObserver --> OrderSubject : Exception
+  note over OrderSubject
+    try/catch by observer : log, metrics
+    continue other notifications
+  end note
+
+  OrderSubject -> WebhookObserver : update(subject)
+  WebhookObserver --> OrderSubject : ok
+end
+
+OrderSubject --> Client : Notifications finished (aggregated success/failure)
+@enduml

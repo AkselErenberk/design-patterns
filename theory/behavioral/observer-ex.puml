@@ -1,0 +1,41 @@
+@startuml
+title Observer — Order Shipped
+
+' Interfaces
+interface Observer {
+  + update(subject: Subject)
+}
+
+interface Subject {
+  + attach(obs: Observer)
+  + detach(obs: Observer)
+  + notifyObservers()
+}
+
+' Sujet concret
+class OrderSubject {
+  - state : String
+  - observers : List<Observer>
+  + setState(newState: String)
+  + getState() : String
+  + attach(obs: Observer)
+  + detach(obs: Observer)
+  + notifyObservers()
+}
+
+' Observers concrets
+class EmailObserver
+class SMSObserver
+class WebhookObserver
+
+' Héritages / implémentations
+Observer <|.. EmailObserver
+Observer <|.. SMSObserver
+Observer <|.. WebhookObserver
+
+Subject <|.. OrderSubject
+
+' Association 1→N
+OrderSubject o-- Observer : "1..* subscribers"
+
+@enduml
