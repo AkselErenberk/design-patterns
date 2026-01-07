@@ -1,0 +1,21 @@
+@startuml
+title Composite — Séquence : getPrice() sur un Bundle avec 2 produits
+
+actor Client
+participant Bundle as b
+participant Product as p1
+participant Product as p2
+
+Client -> b : getPrice()
+b -> p1 : getPrice()
+p1 --> b : Money(10.0, "EUR")
+b -> p2 : getPrice()
+p2 --> b : Money(30.0, "EUR")
+
+note over b
+Aggregation: 10 + 30 = 40
+DiscountPercent (if present) applied here
+end note
+
+b --> Client : Money(40.0, "EUR")
+@enduml

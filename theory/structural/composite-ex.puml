@@ -1,0 +1,36 @@
+@startuml
+title Composite — e-commerce
+
+interface CatalogItem {
+  + getPrice() : Money
+}
+
+class Product {
+  - unitPrice : Money
+  + getPrice() : Money
+}
+
+class Bundle {
+  - children : List<CatalogItem>
+  - discountPercent : double
+  + add(c: CatalogItem)
+  + remove(c: CatalogItem)
+  + getPrice() : Money
+}
+
+class Money {
+  + amount : double
+  + currency : String
+}
+
+CatalogItem <|.. Product
+CatalogItem <|.. Bundle
+
+' Composition: a Bundle "has" his items
+Bundle *-- CatalogItem : "0..* children"
+
+' Domain dependence
+Bundle ..> Money
+Product ..> Money
+
+@enduml
