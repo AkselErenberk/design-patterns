@@ -1,0 +1,10 @@
+@startuml
+title Strategy - Shipping Cost
+
+actor Client
+Client -> ShippingContext : setStrategy(new ExpressShippingStrategy)
+Client -> ShippingContext : calculate(order)
+ShippingContext -> ShippingStrategy : calculate(order)
+ShippingStrategy --> ShippingContext : Money(amount=12.90, currency="EUR")
+ShippingContext --> Client : Money(amount=12.90, currency="EUR")
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+title Strategy + Factory Method — Shipping Cost
+
+class ShippingContext {
+  - strategy : ShippingStrategy
+  + setStrategy(strategy: ShippingStrategy)
+  + calculate(order: Order) : Money
+}
+
+interface ShippingStrategy {
+  + calculate(order: Order) : Money
+}
+
+class ExpressShippingStrategy
+class NormalShippingStrategy
+class EcoShippingStrategy
+
+
+class ShippingStrategyFactory {
+  + forOrder(order: Order) : ShippingStrategy
+}
+
+
+class Order {
+  + weightKg : double
+  + distanceKm : int
+  + deadlineDays : int
+  + countryCode : String
+}
+
+class Money {
+  + amount : double
+  + currency : String
+}
+
+ShippingStrategyFactory ..> ShippingStrategy : creation
+ShippingContext ..> ShippingStrategyFactory : selection
+
+ShippingStrategy <|.. ExpressShippingStrategy
+ShippingStrategy <|.. NormalShippingStrategy
+ShippingStrategy <|.. EcoShippingStrategy
+
+ShippingContext o-- ShippingStrategy : "utilise"
+ShippingContext ..> Order
+ShippingContext ..> Money
+@enduml
