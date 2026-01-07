@@ -1,0 +1,16 @@
+@startuml
+title Decorator — Sequence : write() (Compression -> Encryption -> File)
+
+actor Client
+participant EncryptionDecorator as enc
+participant CompressionDecorator as zip
+participant FileDataSource as file
+
+Client -> enc : write(data)
+enc -> zip : write(data)
+zip -> file : write(compress(data))
+file --> zip : ok
+zip --> enc : ok
+enc --> Client : ok
+
+@enduml

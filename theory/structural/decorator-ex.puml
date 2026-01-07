@@ -1,0 +1,36 @@
+@startuml
+title Decorator — DataSource
+
+interface DataSource {
+  + write(data: bytes)
+  + read() : bytes
+}
+
+class FileDataSource {
+  + write(data: bytes)
+  + read() : bytes
+}
+
+abstract class DataSourceDecorator {
+  - wrappee : DataSource
+  + write(data: bytes)
+  + read() : bytes
+}
+
+class CompressionDecorator
+class EncryptionDecorator
+class CachingDecorator
+
+DataSource <|.. FileDataSource
+DataSource <|.. DataSourceDecorator
+DataSourceDecorator o-- DataSource : "wrap"
+
+DataSourceDecorator <|-- CompressionDecorator
+DataSourceDecorator <|-- EncryptionDecorator
+DataSourceDecorator <|-- CachingDecorator
+
+note right of DataSourceDecorator
+Responsibilities added BEFORE/AFTER
+delegation to the wrapped component.
+end note
+@enduml
