@@ -1,0 +1,8 @@
+@startuml
+title State - Diagramme d'états (TCP simplifié)
+
+[*] --> Closed
+Closed --> Listen : open()
+Listen --> Established : connect()
+Established --> Closed : close()
+@enduml

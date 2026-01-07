@@ -1,0 +1,33 @@
+@startuml
+title Drink Machine Class Diagram
+
+' possible improvement using flyweight:
+' a map of all the states and a currentState
+' (states must be immutable / singleton)
+class DrinkMachineContext {
+    -state : DrinkMachineState
+    +setState(state: DrinkMachineState)
+    +insertCoin()
+    +selectDrink()
+    +dispenseDone()
+    +refund()
+}
+
+interface DrinkMachineState {
+  +insertCoin(context: DrinkMachineContext)
+  +selectDrink(context: DrinkMachineContext)
+  +dispenseDone(context: DrinkMachineContext)
+  +refund(context: DrinkMachineContext)
+}
+
+class Idle
+class HasCredit
+class Dispensing
+class OutOfService
+
+DrinkMachineState <|.. Idle
+DrinkMachineState <|.. HasCredit
+DrinkMachineState <|.. Dispensing
+DrinkMachineState <|.. OutOfService
+DrinkMachineContext o-- DrinkMachineState
+@enduml

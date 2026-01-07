@@ -1,0 +1,16 @@
+@startuml
+title Drink Machine State Diagram
+
+[*] --> Idle
+
+Idle --> HasCredit : insertCoin
+HasCredit --> Dispensing : selectDrink
+HasCredit --> Idle : refund
+Dispensing --> Idle : dispense
+
+' Faults and maintenance
+Idle --> OutOfService : fault
+HasCredit --> OutOfService : fault
+Dispensing --> OutOfService : fault
+OutOfService --> Idle : fix
+@enduml

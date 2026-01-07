@@ -1,0 +1,8 @@
+@startuml
+title State - Séquence de transition
+
+actor Client
+Client -> Context : request()
+Context -> State : handle(context)
+State -> Context : setState(ConcreteStateB)  : transition A -> B
+@enduml
